@@ -4,11 +4,11 @@
 Main paper to be cited
 
 ```
-@inproceedings{goo2018dialsum,
+@inproceedings{goo2018abstractive,
   title={Abstractive Dialogue Summarization with Sentence-Gated Modeling Optimized by Dialogue Acts},
     author={Chih-Wen Goo and Yun-Nung Chen},
-    booktitle={},
-    year={}
+    booktitle={Proceedings of 7th IEEE Workshop on Spoken Language Technology},
+    year={2018}
 }
 ```
 
