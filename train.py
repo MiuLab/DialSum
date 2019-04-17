@@ -198,11 +198,8 @@ def createModel(input_data, input_size, sequence_length, da_size, decoder_sequen
 def valid_model(in_path, da_path, sum_path,sess):
     #return accuracy for dialogue act, rouge-1,2,3,L for summary
     #some useful items are also calculated
-    #pred_sums, correct_sums: predicted / ground truth of summary
     #da_outputs, correct_das: predicted / ground truth of dialogue act
 
-    pred_sums = []
-    correct_sums = []
     rouge_1 = []
     rouge_2 = []
     rouge_3 = []
@@ -217,15 +214,17 @@ def valid_model(in_path, da_path, sum_path,sess):
         feed_dict = {input_data.name: in_data, sequence_length.name: length, sum_length.name: sum_lengths}
         if data_processor_valid.end != 1 or in_data:
             ret = sess.run(inference_outputs, feed_dict)
-            
+
             #summary part
+            pred_sums = []
+            correct_sums = []
             for batch in ret[1]:
                 tmp = []
                 for time_i in batch:
                     tmp.append(np.argmax(time_i))
                 pred_sums.append(tmp)
             for i in sums:
-                correct_sums.append(i)
+                correct_sums.append(i.tolist())
             for pred,corr in zip(pred_sums,correct_sums):
                 rouge_score_map = rouge.rouge(pred,corr)
                 rouge1 = 100*rouge_score_map['rouge_1/f_score']
@@ -464,4 +463,3 @@ with open(os.path.join(header,'test_rL_'+model_type+str(layer_size)+'.txt'),'a')
     f.write(str(t_rL)+'\n')
 
 print('*'*20+model_type+' '+str(layer_size)+'*'*20)
-

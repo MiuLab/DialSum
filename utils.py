@@ -165,4 +165,3 @@ class DataProcessor(object):
 
         return in_data, da_data, da_weight, length, sum_data, sum_weight, sum_length, in_seq, da_seq, sum_seq
 
-
