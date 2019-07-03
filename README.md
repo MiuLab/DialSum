@@ -36,4 +36,5 @@ some sample usage <br>
 
 * use "python3 train.py -h" for all avaliable parameter settings
 
-
+## Note
+A bug found in the script of ROUGE computation is fixed, so the scores will be different from the original paper, but the trend of improvement is the same.
